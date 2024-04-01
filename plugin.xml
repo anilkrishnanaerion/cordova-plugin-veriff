@@ -61,7 +61,7 @@
                 <source url="https://github.com/CocoaPods/Specs.git" />
             </config>
             <pods use-frameworks="true">
-                <pod name="VeriffSDK" swift-version="4.1.0" />
+                <pod name="VeriffSDK" swift-version="6.27.0" />
             </pods>
         </podspec>
 
