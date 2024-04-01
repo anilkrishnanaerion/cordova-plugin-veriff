@@ -12,7 +12,7 @@ import Veriff
         var configuration = VeriffSdk.Configuration()
 
         if let veriffConfiguration: Dictionary<String,String> = command.arguments[1] as? Dictionary<String,String> {
-            let branding = VeriffSdk.Branding(themeColor: UIColor.init(hexString: veriffConfiguration["themeColor"]!))
+            let branding = VeriffSdk.Branding(primary: UIColor.init(hexString: veriffConfiguration["themeColor"]!))
             configuration = VeriffSdk.Configuration(branding: branding)
         }
         
