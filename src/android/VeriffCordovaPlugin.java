@@ -15,9 +15,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 // Veriff imports
-import com.veriff.VeriffBranding;
-import com.veriff.VeriffConfiguration;
-import com.veriff.VeriffResult;
+import com.veriff.Branding;
+import com.veriff.Configuration;
+import com.veriff.Result;
 import com.veriff.VeriffSdk;
 
 public class VeriffCordovaPlugin extends CordovaPlugin {
@@ -52,7 +52,7 @@ public class VeriffCordovaPlugin extends CordovaPlugin {
 
   private void launchVeriffSDK(String sessionUrl) {
     cordova.setActivityResultCallback(this);
-    VeriffBranding.Builder branding = new VeriffBranding.Builder();
+    Branding.Builder branding = new Branding.Builder();
 
     if(veriffConfig.length() > 0) {
       try {
@@ -62,7 +62,7 @@ public class VeriffCordovaPlugin extends CordovaPlugin {
       }
     }
 
-    VeriffConfiguration configuration = new VeriffConfiguration.Builder()
+    Configuration configuration = new Configuration.Builder()
             .branding(branding.build())
             .build();
     Intent intent = VeriffSdk.createLaunchIntent(cordova.getActivity(), sessionUrl, configuration);
@@ -72,7 +72,7 @@ public class VeriffCordovaPlugin extends CordovaPlugin {
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     if (requestCode == REQUEST_CODE && data != null) {
-      VeriffResult result = VeriffResult.fromResultIntent(data);
+      Result result = Result.fromResultIntent(data);
       if (result != null) {
         try {
           handleResult(result);
