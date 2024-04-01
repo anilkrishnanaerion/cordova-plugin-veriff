@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import com.veriff.Branding;
 import com.veriff.Configuration;
 import com.veriff.Result;
-import com.veriff.VeriffSdk;
+import com.veriff.Sdk;
 
 public class VeriffCordovaPlugin extends CordovaPlugin {
 
@@ -56,7 +56,7 @@ public class VeriffCordovaPlugin extends CordovaPlugin {
 
     if(veriffConfig.length() > 0) {
       try {
-        branding.themeColor(Color.parseColor(veriffConfig.getString("themeColor")));
+        branding.primary(Color.parseColor(veriffConfig.getString("themeColor")));
       } catch (JSONException e) {
         e.printStackTrace();
       }
@@ -65,7 +65,7 @@ public class VeriffCordovaPlugin extends CordovaPlugin {
     Configuration configuration = new Configuration.Builder()
             .branding(branding.build())
             .build();
-    Intent intent = VeriffSdk.createLaunchIntent(cordova.getActivity(), sessionUrl, configuration);
+    Intent intent = Sdk.createLaunchIntent(cordova.getActivity(), sessionUrl, configuration);
     cordova.startActivityForResult(this, intent, REQUEST_CODE);
   }
 
@@ -84,9 +84,9 @@ public class VeriffCordovaPlugin extends CordovaPlugin {
     super.onActivityResult(requestCode, resultCode, data);
   }
 
-  public void handleResult(VeriffResult result) throws JSONException {
+  public void handleResult(Result result) throws JSONException {
     JSONObject resultJson = new JSONObject();
-    VeriffResult.Status status = result.getStatus();
+    Result.Status status = result.getStatus();
     resultJson.put("status", status.toString());
     Log.d("Handle VeriffSDK result", status.toString());
     switch (status) {
