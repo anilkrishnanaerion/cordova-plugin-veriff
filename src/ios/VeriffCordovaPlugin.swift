@@ -11,10 +11,10 @@ import Veriff
         let sessionUrl = command.arguments[0] as! String
         var configuration = VeriffSdk.Configuration()
 
-        if let veriffConfiguration: Dictionary<String,String> = command.arguments[1] as? Dictionary<String,String> {
-            let branding = VeriffSdk.Branding(primary: UIColor.init(hexString: veriffConfiguration["themeColor"]!))
-            configuration = VeriffSdk.Configuration(branding: branding)
-        }
+       // if let veriffConfiguration: Dictionary<String,String> = command.arguments[1] as? Dictionary<String,String> {
+       //     let branding = VeriffSdk.Branding(primary: UIColor.init(hexString: veriffConfiguration["themeColor"]!))
+       //     configuration = VeriffSdk.Configuration(branding: branding)
+       // }
         
         let veriff = VeriffSdk.shared
         veriff.delegate = self
